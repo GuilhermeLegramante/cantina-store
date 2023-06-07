@@ -6,8 +6,6 @@
 
 @include('partials.spinner.default')
 
-@include('partials.modals.delete')
-
 @yield('page_content')
 
 <br>

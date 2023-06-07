@@ -11,35 +11,33 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
 
 
-class UserTable extends Component
+class TestTable extends Component
 {
     use WithDatatable, WithPagination;
 
-    public $entity = 'user';
-    public $pageTitle = 'Usuário';
-    public $icon = 'fas fa-user';
-    public $searchFieldsLabel = 'Código ou Nome';
+    public $entity;
+    public $pageTitle;
+    public $icon = 'fas fa-list';
+    public $searchFieldsLabel;
     public $hasForm = true;
-    public $formModalEmitMethod = 'showUserFormModal';
-    public $formType = 'page';
 
     public $headerColumns = [
-        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-15'],
-        ['field' => 'name', 'label' => 'Nome', 'css' => 'w-70'],
-        ['field' => 'isAdmin', 'label' => 'Administrador', 'css' => 'text-center w-15'],
-        ['field' => null, 'label' => 'Ações', 'css' => 'text-center'],
+        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-5'],
+        ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-70'],
     ];
 
     public $bodyColumns = [
         ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'name', 'type' => 'string', 'css' => 'pl-12px'],
-        ['field' => 'isAdmin', 'type' => 'boolean', 'css' => 'text-center'],
+        ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px'],
     ];
 
-    protected $repositoryClass = 'App\Repositories\UserRepository';
+    protected $repositoryClass = 'App\Repositories\\TestRepository';
 
     public function mount()
     {
+        $this->entity = 'test';
+        $this->pageTitle = 'Teste';
+
         SessionService::start();
     }
 
@@ -65,6 +63,6 @@ class UserTable extends Component
 
         $buttons = $this->rowButtons();
 
-        return view('livewire.user-table', compact('data', 'buttons'));
+        return view('livewire.test-table', compact('data', 'buttons'));
     }
 }

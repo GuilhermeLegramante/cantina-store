@@ -10,6 +10,7 @@ class UserForm extends Component
 {
     use WithForm;
 
+    public $entity = 'user';
     public $pageTitle = 'Usuário';
     public $icon = 'fas fa-user';
     public $basePath = 'user.table';

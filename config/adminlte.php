@@ -226,6 +226,12 @@ return [
             'icon' => 'nav-icon fas fa-table',
             'submenu' => [
                 [
+                    'text' => 'Categorias',
+                    'icon' => 'nav-icon fas fa-list',
+                    'url' => '/categoria',
+                    'active' => ['categoria/*'],
+                ],
+                [
                     'text' => 'Usuários',
                     'icon' => 'nav-icon fas fa-users',
                     'url' => '/usuario',

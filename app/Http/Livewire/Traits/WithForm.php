@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Traits;
 
 use App\Services\Mask;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 trait WithForm
 {
@@ -32,6 +32,7 @@ trait WithForm
     public function store()
     {
         $this->validate();
+
         try {
             DB::beginTransaction();
 
@@ -60,14 +61,14 @@ trait WithForm
             session()->flash('success', 'Registro salvo com sucesso');
             DB::commit();
 
-            return redirect()->route($this->basePath);
+            return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
             DB::rollback();
 
             session()->flash('error-details', $error->getMessage());
 
             isset($error->errorInfo) && $error->errorInfo[0] == '23000' ? session()->flash('error', config('messages.mysql.' . $error->errorInfo[1])) :
-                session()->flash('error', $error->getMessage());
+            session()->flash('error', $error->getMessage());
         }
     }
 
@@ -104,14 +105,14 @@ trait WithForm
             session()->flash('success', 'Registro editado com sucesso');
             DB::commit();
 
-            return redirect()->route($this->basePath);
+            return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
             DB::rollback();
 
             session()->flash('error-details', $error->getMessage());
 
             isset($error->errorInfo) && $error->errorInfo[0] == '23000' ? session()->flash('error', config('messages.mysql.' . $error->errorInfo[1])) :
-                session()->flash('error', $error->getMessage());
+            session()->flash('error', $error->getMessage());
         }
     }
 
@@ -129,7 +130,7 @@ trait WithForm
             session()->flash('success', 'Registro excluído com sucesso');
             DB::commit();
 
-            return redirect()->route($this->basePath);
+            return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
             DB::rollback();
 
@@ -138,7 +139,7 @@ trait WithForm
             session()->flash('error-details', $error->getMessage());
 
             isset($error->errorInfo) && $error->errorInfo[0] == '23000' ? session()->flash('error', config('messages.mysql.' . $error->errorInfo[1])) :
-                session()->flash('error', $error->getMessage());
+            session()->flash('error', $error->getMessage());
         }
     }
 }

@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use Exception;
 use File;
-use Str;
 use Illuminate\Console\Command;
+use Str;
 
 class MakeTableComponent extends Command
 {
@@ -13,7 +13,6 @@ class MakeTableComponent extends Command
     protected string $componentName;
 
     protected string $stub;
-
 
     /**
      * The name and signature of the console command.
@@ -52,7 +51,7 @@ class MakeTableComponent extends Command
             $this->output->newLine();
             $this->output->writeln('Tabela criada com sucesso!');
 
-        } catch (CreateCommandException $e) {
+        } catch (Exception $e) {
             $this->error($e->getMessage());
 
             return self::FAILURE;
@@ -76,14 +75,14 @@ class MakeTableComponent extends Command
         }
     }
 
-    protected function createFiles() : void
+    protected function createFiles(): void
     {
         $this->createBackEndFile();
         $this->createFrontEndFile();
 
     }
 
-    private function createBackEndFile() : void
+    private function createBackEndFile(): void
     {
         $livewirePath = 'Http/Livewire/';
         $path = app_path($livewirePath . $this->componentName . '.php');
@@ -96,7 +95,7 @@ class MakeTableComponent extends Command
         File::put($path, $this->stub);
     }
 
-    private function createFrontEndFile() : void
+    private function createFrontEndFile(): void
     {
         $path = base_path() . '\\resources\\views\\livewire\\' . Str::kebab($this->componentName) . '.blade.php';
 

@@ -8,9 +8,6 @@ trait WithDatatable
     public $sortDirection = 'asc';
     protected $paginationTheme = 'bootstrap';
     public $perPage = 30;
-    public $searchDesc = '';
-    public $searchCod = '';
-    public $searchGeneric = '';
     public $search;
     public $hasForm = true;
 
@@ -22,9 +19,6 @@ trait WithDatatable
 
     public function resetFields()
     {
-        $this->searchGeneric = "";
-        $this->searchCod = "";
-        $this->searchDesc = "";
         $this->perPage = 30;
     }
 
@@ -47,11 +41,20 @@ trait WithDatatable
 
     public function showForm($id = null)
     {
-        if (isset($id)) {
-            return redirect()->route($this->entity . '.edit', ['id' => $id]);
-        } else {
+        if ($this->formType == 'modal') {
+            if (isset($id)) {
+                $this->emit($this->formModalEmitMethod, $id);
+            } else {
+                $this->emit($this->formModalEmitMethod);
+            }
 
-            return redirect()->route($this->entity . '.create');
+        } else {
+            if (isset($id)) {
+                return redirect()->route($this->entity . '.edit', ['id' => $id]);
+            } else {
+
+                return redirect()->route($this->entity . '.create');
+            }
         }
     }
 
@@ -60,7 +63,7 @@ trait WithDatatable
     {
         // Caso seja modal não há os links da paginação, por isso é necessário este teste
         // para evitar o erro "livewire gotopage doesnot exists"
-        if(!isset($this->modalId)){
+        if (!isset($this->modalId)) {
             $this->gotoPage(1);
         }
     }

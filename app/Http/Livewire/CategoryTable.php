@@ -11,35 +11,36 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
 
 
-class UserTable extends Component
+class CategoryTable extends Component
 {
     use WithDatatable, WithPagination;
 
-    public $entity = 'user';
-    public $pageTitle = 'Usuário';
-    public $icon = 'fas fa-user';
-    public $searchFieldsLabel = 'Código ou Nome';
+    public $entity;
+    public $pageTitle;
+    public $icon = 'fas fa-list';
+    public $searchFieldsLabel;
     public $hasForm = true;
-    public $formModalEmitMethod = 'showUserFormModal';
-    public $formType = 'page';
+    public $formModalEmitMethod = 'showCategoryFormModal';
+    public $formType = 'modal';
 
     public $headerColumns = [
-        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-15'],
-        ['field' => 'name', 'label' => 'Nome', 'css' => 'w-70'],
-        ['field' => 'isAdmin', 'label' => 'Administrador', 'css' => 'text-center w-15'],
+        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-10'],
+        ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-80'],
         ['field' => null, 'label' => 'Ações', 'css' => 'text-center'],
     ];
 
     public $bodyColumns = [
         ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'name', 'type' => 'string', 'css' => 'pl-12px'],
-        ['field' => 'isAdmin', 'type' => 'boolean', 'css' => 'text-center'],
+        ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px'],
     ];
 
-    protected $repositoryClass = 'App\Repositories\UserRepository';
+    protected $repositoryClass = 'App\Repositories\CategoryRepository';
 
     public function mount()
     {
+        $this->entity = 'category';
+        $this->pageTitle = 'Categoria';
+
         SessionService::start();
     }
 
@@ -65,6 +66,6 @@ class UserTable extends Component
 
         $buttons = $this->rowButtons();
 
-        return view('livewire.user-table', compact('data', 'buttons'));
+        return view('livewire.category-table', compact('data', 'buttons'));
     }
 }

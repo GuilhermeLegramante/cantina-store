@@ -1,3 +1,5 @@
+@include('partials.modals.delete')
+
 <div class="row">
     @include('partials.inputs.text', [
     'columnSize' => 12,
