@@ -232,6 +232,12 @@ return [
                     'active' => ['categoria/*'],
                 ],
                 [
+                    'text' => 'Fabricantes',
+                    'icon' => 'nav-icon fas fa-building',
+                    'url' => '/fabricante',
+                    'active' => ['fabricante/*'],
+                ],
+                [
                     'text' => 'Usuários',
                     'icon' => 'nav-icon fas fa-users',
                     'url' => '/usuario',

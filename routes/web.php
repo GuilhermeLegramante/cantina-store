@@ -18,4 +18,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/categoria')->group(function () {
         Route::get('/', 'CategoryController@table')->name('category.table');
     });
+
+    Route::prefix('/fabricante')->group(function () {
+        Route::get('/', 'ManufacturerController@table')->name('manufacturer.table');
+    });
 });
