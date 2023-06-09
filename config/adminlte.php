@@ -232,10 +232,34 @@ return [
                     'active' => ['categoria/*'],
                 ],
                 [
+                    'text' => 'CEST/NCM',
+                    'icon' => 'nav-icon fas fa-list',
+                    'url' => '/cest-ncm',
+                    'active' => ['cest-ncm/*'],
+                ],
+                [
+                    'text' => 'CFOP',
+                    'icon' => 'nav-icon fas fa-list',
+                    'url' => '/cfop',
+                    'active' => ['cfop/*'],
+                ],
+                [
+                    'text' => 'CSOSN',
+                    'icon' => 'nav-icon fas fa-list',
+                    'url' => '/csosn',
+                    'active' => ['csosn/*'],
+                ],
+                [
                     'text' => 'Fabricantes',
                     'icon' => 'nav-icon fas fa-building',
                     'url' => '/fabricante',
                     'active' => ['fabricante/*'],
+                ],
+                [
+                    'text' => 'Unidade de Medida',
+                    'icon' => 'nav-icon fas fa-list',
+                    'url' => '/unidade-de-medida',
+                    'active' => ['unidade-de-medida/*'],
                 ],
                 [
                     'text' => 'Usuários',

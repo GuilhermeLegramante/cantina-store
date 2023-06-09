@@ -2,16 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\WithPagination;
 use App\Http\Livewire\Components\Button;
 use App\Http\Livewire\Traits\WithDatatable;
-use Livewire\Component;
 use App\Services\SessionService;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-
-class {{ tableComponentName }} extends Component
+class MeasurementUnitTable extends Component
 {
     use WithDatatable, WithPagination;
 
@@ -20,26 +18,28 @@ class {{ tableComponentName }} extends Component
     public $icon = 'fas fa-list';
     public $searchFieldsLabel = 'Código ou Descrição';
     public $hasForm = true;
-    public $formModalEmitMethod = 'show{{ entityUcFirst }}FormModal';
+    public $formModalEmitMethod = "showMeasurementUnitFormModal";
     public $formType = 'modal';
 
     public $headerColumns = [
         ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-10'],
+        ['field' => 'acronym', 'label' => 'Abreviatura', 'css' => 'w-20'],
         ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-80'],
         ['field' => null, 'label' => 'Ações', 'css' => 'text-center'],
     ];
 
     public $bodyColumns = [
         ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
+        ['field' => 'acronym', 'type' => 'string', 'css' => 'pl-12px'],
         ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px'],
     ];
 
-    protected $repositoryClass = 'App\Repositories\{{ entityUcFirst }}Repository';
+    protected $repositoryClass = 'App\Repositories\MeasurementUnitRepository';
 
     public function mount()
     {
-        $this->entity = '{{ entity }}';
-        $this->pageTitle = '{{ entityPtBr }}';
+        $this->entity = 'measurementUnit';
+        $this->pageTitle = 'Unidade de Medida';
 
         SessionService::start();
     }
@@ -66,6 +66,6 @@ class {{ tableComponentName }} extends Component
 
         $buttons = $this->rowButtons();
 
-        return view('livewire.{{ tableViewName }}', compact('data', 'buttons'));
+        return view('livewire.measurement-unit-table', compact('data', 'buttons'));
     }
 }
