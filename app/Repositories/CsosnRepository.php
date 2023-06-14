@@ -17,7 +17,7 @@ class CsosnRepository
             ->select(
                 $this->table . '.id AS id',
                 $this->table . '.code AS code',
-                $this->table . '.description AS description',
+                DB::raw("(SELECT CONCAT({$this->table}.code, ' - ', {$this->table}.description)) AS description"),
                 $this->table . '.created_at AS createdAt',
                 $this->table . '.updated_at AS updatedAt',
             );

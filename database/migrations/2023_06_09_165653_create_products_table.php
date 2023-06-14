@@ -15,15 +15,27 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->integer('manufacturer_id');
+            $table->integer('category_id');
             $table->string('description')->unique();
-            $table->string('code')->unique();
-            $table->string('barcode')->unique();
-            $table->integer('measurement_unit_id');
-            $table->integer('cest_ncm_id');
-            $table->integer('cfop_id');
-            $table->integer('csosn_id');
+            $table->string('code')->unique()->nullable();
+            $table->string('barcode')->unique()->nullable();
+            $table->double('weight')->nullable();
+            $table->integer('measurement_unit_id')->nullable();
+            $table->integer('cest_ncm_id')->nullable();
+            $table->integer('cfop_id')->nullable();
+            $table->integer('csosn_id')->nullable();
+            $table->double('cost_price')->nullable();
             $table->integer('user_id');
             $table->timestamps();
+            $table->foreign('manufacturer_id')
+                ->references('id')
+                ->on('manufacturers')
+                ->onDelete('cascade');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
             $table->foreign('measurement_unit_id')
                 ->references('id')
                 ->on('measurement_units')
@@ -34,7 +46,7 @@ class CreateProductsTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('cfop_id')
                 ->references('id')
-                ->on('users')
+                ->on('cfop')
                 ->onDelete('cascade');
             $table->foreign('csosn_id')
                 ->references('id')

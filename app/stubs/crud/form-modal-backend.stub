@@ -59,7 +59,7 @@ class {{ formModalComponentName }} extends Component
 
     public function mount($id = null)
     {
-        $this->formTitle = strtoupper('DADOS DO(A) ' . '{{ entityPtBr }}');
+        $this->formTitle = strtoupper('DADOS DO(A) {{ entityPtBr }}');
         $this->entity = '{{ entity }}';
         $this->pageTitle = '{{ entityPtBr }}';
 

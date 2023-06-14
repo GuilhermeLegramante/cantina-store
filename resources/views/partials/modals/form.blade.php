@@ -1,7 +1,7 @@
 @include('partials.modals.delete')
 
 <div wire:ignore.self class="modal fade z-index-99999" id="{{ $entity }}-form-modal" role="dialog" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <p>

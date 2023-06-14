@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Traits;
 
-use App\Services\Mask;
+use App\Services\FormService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
@@ -40,28 +40,15 @@ trait WithForm
 
             $repository = App::make($this->repositoryClass);
 
-            $data = [];
-            $array = json_decode(json_encode($this), true);
-            foreach ($this->inputs as $value) {
-                if (isset($value['type'])) {
-                    if ($value['type'] == 'monetary') {
-                        $data[$value['field']] = Mask::removeMoneyMask($array[$value['field']]);
-                    }
-                    if ($value['type'] == 'string') {
-                        $data[$value['field']] = Mask::normalizeString($array[$value['field']]);
-                    }
-                    if ($value['type'] == 'number') {
-                        $data[$value['field']] = $array[$value['field']];
-                    }
-                } else {
-                    $data[$value['field']] = $array[$value['field']];
-                }
-            }
+            $data = FormService::resolveInputs($this, $this->inputs);
+
             $repository->save($data);
             session()->flash('success', 'Registro salvo com sucesso');
             DB::commit();
 
-            return redirect()->route($this->entity . '.table');
+            // $this->emit('hide' . ucfirst($this->entity) . 'FormModal');
+
+            // return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
             DB::rollback();
 
@@ -81,31 +68,16 @@ trait WithForm
             $this->customValidate();
 
             $repository = App::make($this->repositoryClass);
-            $data = [];
-            $array = json_decode(json_encode($this), true);
-            foreach ($this->inputs as $value) {
-                if ($value['edit']) {
-                    if (isset($value['type'])) {
-                        if ($value['type'] == 'monetary') {
-                            $data[$value['field']] = Mask::removeMoneyMask($array[$value['field']]);
-                        }
-                        if ($value['type'] == 'string') {
-                            $data[$value['field']] = Mask::normalizeString($array[$value['field']]);
-                        }
-                        if ($value['type'] == 'number') {
-                            $data[$value['field']] = $array[$value['field']];
-                        }
-                    } else {
-                        $data[$value['field']] = $array[$value['field']];
-                    }
-                }
-            }
+
+            $data = FormService::resolveInputs($this, $this->inputs);
 
             $repository->update($data);
             session()->flash('success', 'Registro editado com sucesso');
             DB::commit();
 
-            return redirect()->route($this->entity . '.table');
+            // $this->emit('hide' . ucfirst($this->entity) . 'FormModal');
+
+            // return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
             DB::rollback();
 

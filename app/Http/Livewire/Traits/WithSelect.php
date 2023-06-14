@@ -16,14 +16,16 @@ trait WithSelect
 
     private $data = [];
 
+    public $addMethod;
+
     public $headerColumns = [
-        ['field' => 'code', 'label' => 'Código', 'css' => 'text-center w-10'],
+        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-10'],
         ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-50'],
         ['field' => null, 'label' => 'Ações', 'css' => 'w-10'],
     ];
 
     public $bodyColumns = [
-        ['field' => 'code', 'type' => 'string', 'css' => 'text-center'],
+        ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
         ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px'],
     ];
 

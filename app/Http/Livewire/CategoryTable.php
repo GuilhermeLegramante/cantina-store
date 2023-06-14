@@ -2,14 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\WithPagination;
 use App\Http\Livewire\Components\Button;
 use App\Http\Livewire\Traits\WithDatatable;
-use Livewire\Component;
 use App\Services\SessionService;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
-
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class CategoryTable extends Component
 {
@@ -18,7 +16,7 @@ class CategoryTable extends Component
     public $entity;
     public $pageTitle;
     public $icon = 'fas fa-list';
-    public $searchFieldsLabel;
+    public $searchFieldsLabel = 'Busca por Código ou Descrição';
     public $hasForm = true;
     public $formModalEmitMethod = 'showCategoryFormModal';
     public $formType = 'modal';

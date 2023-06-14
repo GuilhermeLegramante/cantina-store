@@ -235,8 +235,10 @@ class MakeCrud extends Command
 
         $path = base_path() . '\\resources\\views\\partials\\forms\\' . Str::kebab($this->entity) . '.blade.php';
 
-        File::put($path, $this->stub);
+        $this->stub = str_replace('{{ entity }}', $this->entity, $this->stub);
+        $this->stub = str_replace('{{ entityUcFirst }}', $this->entityUcFirst, $this->stub);
 
+        File::put($path, $this->stub);
     }
 
 }

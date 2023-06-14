@@ -1,4 +1,4 @@
-<a wire:ignore href="{{ route($entity . '.table') }}" class="btn btn-outline-primary btn-sm" wire:loading.class="disabled">
+<a href="" data-dismiss="modal" class="btn btn-outline-primary btn-sm" wire:loading.class="disabled">
     <i class="fas fa-times" aria-hidden="true"></i>
     <strong> CANCELAR &nbsp;</strong>
 </a>

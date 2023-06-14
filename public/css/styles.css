@@ -879,3 +879,16 @@ tfoot {
 .modal {
     overflow-y: auto;
 }
+
+
+.filepond--image-preview-overlay-idle {
+    color: rgba(40, 40, 40, 0.85);
+}
+
+.filepond--image-preview-overlay-success {
+    color: rgb(44, 84, 145);
+}
+
+.filepond--image-preview-overlay-failure {
+    color: rgb(196, 78, 71);
+}

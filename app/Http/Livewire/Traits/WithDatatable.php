@@ -10,6 +10,7 @@ trait WithDatatable
     public $perPage = 30;
     public $search;
     public $hasForm = true;
+    public $insertButtonOnSelectModal = false;
 
     public function sortBy($field)
     {

@@ -9,7 +9,7 @@
         $('#{{ entity }}-form-modal').modal('show');
     });
 
-    window.livewire.on('hideDemandFormModal', () => {
+    window.livewire.on('hide{{ entityUcFirst }}FormModal', () => {
         $('#{{ entity }}-form-modal').modal('hide');
     });
 

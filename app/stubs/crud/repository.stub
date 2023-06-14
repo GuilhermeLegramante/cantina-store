@@ -51,7 +51,7 @@ class {{ entityUcFirst }}Repository
             null
         );
 
-        $userId = DB::table($this->table)
+        $registerId = DB::table($this->table)
             ->insertGetId(
                 [
                     'description' => $data['description'],
@@ -60,7 +60,7 @@ class {{ entityUcFirst }}Repository
                 ]
             );
 
-        return $userId;
+        return $registerId;
     }
 
     public function update($data)

@@ -38,4 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/csosn')->group(function () {
         Route::get('/', 'CsosnController@table')->name('csosn.table');
     });
+
+    Route::prefix('/produto')->group(function () {
+        Route::get('/', 'ProductController@table')->name('product.table');
+    });
 });

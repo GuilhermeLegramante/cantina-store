@@ -18,7 +18,7 @@ class CestncmRepository
                 $this->table . '.id AS id',
                 $this->table . '.cest AS cest',
                 $this->table . '.ncm AS ncm',
-                $this->table . '.description AS description',
+                DB::raw("(SELECT CONCAT(cest_ncm.cest, '/', cest_ncm.ncm, ' - ', cest_ncm.description)) AS description"),
                 $this->table . '.created_at AS createdAt',
                 $this->table . '.updated_at AS updatedAt',
             );
@@ -32,6 +32,12 @@ class CestncmRepository
             ])
             ->orWhere([
                 [$this->table . '.description', 'like', '%' . $search . '%'],
+            ])
+            ->orWhere([
+                [$this->table . '.cest', 'like', '%' . $search . '%'],
+            ])
+            ->orWhere([
+                [$this->table . '.ncm', 'like', '%' . $search . '%'],
             ])
             ->orderBy($sortBy, $sortDirection)
             ->paginate($perPage);
