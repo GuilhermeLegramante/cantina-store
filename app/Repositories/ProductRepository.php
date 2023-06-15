@@ -89,11 +89,17 @@ class ProductRepository
             $this->uploadFiles($data['images'], $registerId);
         }
 
+        if (isset($data['tags'])) {
+            $this->insertTags($data['tags'], $registerId);
+        }
+
         return $registerId;
     }
 
     public function update($data)
     {
+        dd($data);
+
         $oldData = $this->findById($data['recordId']);
 
         LogService::saveLog(
@@ -125,12 +131,12 @@ class ProductRepository
                 ]
             );
 
-        if ($data['keepFiles'] == false) {
-            $this->deleteFiles($data['recordId']);
-        }
-
         if (isset($data['images'])) {
             $this->uploadFiles($data['images'], $data['recordId']);
+        }
+
+        if (isset($data['tags'])) {
+            $this->insertTags($data['tags'], $data['recordId']);
         }
     }
 
@@ -152,23 +158,6 @@ class ProductRepository
             ->delete();
     }
 
-    private function deleteFiles($productId)
-    {
-        $repository = new ProductRepository();
-
-        $product = $repository->findById($productId);
-
-        if ($product->totalImages > 0) {
-            foreach ($product->images as $image) {
-                Storage::disk('s3')->delete($image->path);
-            }
-
-            DB::table('product_images')
-                ->where('product_id', $productId)
-                ->delete();
-        }
-    }
-
     public function findById($id)
     {
         $product = $this->baseQuery
@@ -176,16 +165,23 @@ class ProductRepository
             ->get()
             ->first();
 
-        $images = DB::table('products')
-            ->join('product_images', 'product_images.product_id', '=', 'products.id')
-            ->where('products.id', $id)
+        $images = DB::table('product_images')
+            ->where('product_images.product_id', $id)
             ->select(
                 'product_images.id AS id',
-                'products.id AS productId',
                 'product_images.path AS path',
             )->get();
 
         $product->images = $images;
+
+        $tags = DB::table('product_tags')
+            ->where('product_tags.product_id', $id)
+            ->select(
+                'product_tags.id AS id',
+                'product_tags.tag AS tag',
+            )->get();
+
+        $product->tags = $tags;
 
         return $product;
     }
@@ -205,6 +201,25 @@ class ProductRepository
                         'path' => $s3Path,
                         'user_id' => session()->get('userId'),
                         'product_id' => $productId,
+                        'created_at' => now(),
+                    ]
+                );
+        }
+    }
+
+    private function insertTags($tags, $productId)
+    {
+        DB::table('product_tags')
+            ->where('product_id', $productId)
+            ->delete();
+
+        foreach ($tags as $key => $tag) {
+            DB::table('product_tags')
+                ->insert(
+                    [
+                        'product_id' => $productId,
+                        'tag' => $tag,
+                        'user_id' => session()->get('userId'),
                         'created_at' => now(),
                     ]
                 );

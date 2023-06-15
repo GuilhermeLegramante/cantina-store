@@ -1,8 +1,6 @@
 <div>
     @include('partials.modals.form')
 
-    @include('partials.modals.product-images')
-
     @livewire('manufacturer-select')
 
     @livewire('category-select')
@@ -46,14 +44,6 @@
     window.livewire.on('showCsosnSelectModal', () => {
         $('#modal-select-csosn').modal('show');
         Livewire.emit('csosnSelectModal');
-    });
-
-    window.livewire.on('showProductImagesModal', () => {
-        $('#modal-product-images').modal('show');
-    });
-
-    window.livewire.on('hideProductImagesModal', () => {
-        $('#modal-product-images').modal('hide');
     });
 
     window.livewire.on('scrollTop', () => {

@@ -35,9 +35,7 @@ class ProductFormModal extends Component
     public $code;
     public $barcode;
     public $weight;
-    // public $files;
     public $storedFiles = [];
-    public $keepFiles = true;
     public $costPrice;
     public $tag;
     public $tags = [];
@@ -65,8 +63,8 @@ class ProductFormModal extends Component
         ['field' => 'cfopId', 'edit' => true],
         ['field' => 'csosnId', 'edit' => true],
         ['field' => 'images', 'edit' => true, 'type' => 'file'],
-        ['field' => 'keepFiles', 'edit' => true],
         ['field' => 'costPrice', 'edit' => true, 'type' => 'monetary'],
+        ['field' => 'tags', 'edit' => true],
     ];
 
     protected $listeners = [
@@ -145,6 +143,7 @@ class ProductFormModal extends Component
         }
     }
 
+
     public function setFields($data)
     {
         $this->recordId = $data->id;
@@ -153,7 +152,7 @@ class ProductFormModal extends Component
         $this->code = $data->code;
         $this->barcode = $data->barcode;
         $this->weight = $data->weight;
-        // $this->images = $data->images;
+        $this->images = $data->images;
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($data->images);
         $this->costPrice = Mask::money($data->costPrice);
 
@@ -177,24 +176,19 @@ class ProductFormModal extends Component
         $repository = new ProductRepository();
 
         $this->product = ArrayHandler::jsonDecodeEncode($repository->findById($data->id));
+
+        if (isset($data->tags)) {
+            foreach ($data->tags as $value) {
+                array_push($this->tags, $value->tag);
+            }
+        }
     }
 
-    public function showFiles($productId)
+    public function deleteFile($imageId)
     {
         $repository = new ProductRepository();
 
-        $this->product = ArrayHandler::jsonDecodeEncode($repository->findById($productId));
-
-        $this->emit('showProductImagesModal');
-    }
-
-    public function deleteFile($fileId, $demandId)
-    {
-        $repository = new ProductRepository();
-
-        $repository->deleteImage($fileId);
-
-        $this->showFiles($demandId);
+        $repository->deleteImage($imageId);
     }
 
     public function updatedTag()
