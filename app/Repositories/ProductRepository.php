@@ -86,7 +86,7 @@ class ProductRepository
             );
 
         if (isset($data['images'])) {
-            $this->uploadFiles($data['images'], $data['storedFiles'], $registerId);
+            $this->uploadFiles($data['images'], $registerId);
         }
 
         if (isset($data['tags'])) {
@@ -130,7 +130,7 @@ class ProductRepository
             );
 
         if (isset($data['images'])) {
-            $this->uploadFiles($data['images'], $data['storedFiles'], $data['recordId']);
+            $this->uploadFiles($data['images'], $data['recordId']);
         }
 
         if (isset($data['tags'])) {
@@ -184,22 +184,8 @@ class ProductRepository
         return $product;
     }
 
-    private function uploadFiles($images, $storedImages = [], $productId)
+    private function uploadFiles($images, $productId)
     {
-        if (count($storedImages) > 0) {
-            foreach ($storedImages as $image) {
-                DB::table('product_images')
-                    ->insertGetId(
-                        [
-                            'path' => $image['path'],
-                            'user_id' => session()->get('userId'),
-                            'product_id' => $productId,
-                            'created_at' => now(),
-                        ]
-                    );
-            }
-        }
-
         foreach ($images as $file) {
             $path = '_cantina-store/produtos';
 
