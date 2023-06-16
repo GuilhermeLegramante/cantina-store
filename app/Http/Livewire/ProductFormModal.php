@@ -143,16 +143,17 @@ class ProductFormModal extends Component
         }
     }
 
-
     public function setFields($data)
     {
+        dd(isset($data->images));
         $this->recordId = $data->id;
 
         $this->description = $data->description;
         $this->code = $data->code;
         $this->barcode = $data->barcode;
         $this->weight = $data->weight;
-        if(isset($data->images)){
+        if (isset($data->images)) {
+
             $this->images = $data->images;
         }
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($data->images);
