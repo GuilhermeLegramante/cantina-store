@@ -44,8 +44,6 @@ class ProductFormModal extends Component
 
     public $activeTab = 1;
 
-    public $storedImages = [];
-
     public $images = [];
 
     // Controle do campo input:file que não limpa o cache sozinho
@@ -63,6 +61,7 @@ class ProductFormModal extends Component
         ['field' => 'cfopId', 'edit' => true],
         ['field' => 'csosnId', 'edit' => true],
         ['field' => 'images', 'edit' => true, 'type' => 'file'],
+        ['field' => 'storedFiles', 'edit' => true],
         ['field' => 'costPrice', 'edit' => true, 'type' => 'monetary'],
         ['field' => 'tags', 'edit' => true],
     ];
@@ -151,10 +150,6 @@ class ProductFormModal extends Component
         $this->code = $data->code;
         $this->barcode = $data->barcode;
         $this->weight = $data->weight;
-        if (count($data->images) > 0) {
-            $this->images = ArrayHandler::jsonDecodeEncode($data->images);
-        }
-        dd($this->images);
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($data->images);
         $this->costPrice = Mask::money($data->costPrice);
 
