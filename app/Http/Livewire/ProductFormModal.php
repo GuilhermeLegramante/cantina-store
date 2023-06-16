@@ -186,6 +186,11 @@ class ProductFormModal extends Component
         $repository = new ProductRepository();
 
         $repository->deleteImage($imageId);
+
+        $repository = new ProductRepository();
+        $product = $repository->findById($this->recordId);
+
+        $this->storedFiles = ArrayHandler::jsonDecodeEncode($product->images);
     }
 
     public function updatedTag()
