@@ -16,7 +16,7 @@ class CreateCfopTable extends Migration
         Schema::create('cfop', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('code')->unique();
-            $table->string('description')->unique();
+            $table->string('description');
             $table->timestamps();
         });
     }

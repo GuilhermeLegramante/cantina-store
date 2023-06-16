@@ -1,5 +1,6 @@
 insert into `users`(`login`,`name`,`password`,`email`,`is_admin`, `created_at`) values ('GUILHERME','GUILHERME MARTINS','ffa5d4e38dfb646691f71683f08ebc7e8e26eb62','guilhermelegrmante@gmail.com',1, '2023-05-01 08:58:32');
 insert into `users`(`login`,`name`,`password`,`email`,`is_admin`, `created_at`) values ('PABLO','PABLO VENZON','ffa5d4e38dfb646691f71683f08ebc7e8e26eb62','pablovenzon@hotmail.com',1, '2023-05-01 08:58:32');
+insert into `users`(`login`,`name`,`password`,`email`,`is_admin`, `created_at`) values ('ADMIN','ADMINISTRADOR','7c4a8d09ca3762af61e59520943dc26494f8941b','admin@cantinastore.com',1, '2023-05-01 08:58:32');
 
 
 INSERT INTO cest_ncm (`cest`, `ncm`, `description`) VALUES ('0100100', '38151210', 'Catalisadores em colmeia cerâmica ou metálica para conversão catalítica de gases de escape de veículos e outros catalisadores');
