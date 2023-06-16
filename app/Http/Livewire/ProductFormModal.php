@@ -189,10 +189,9 @@ class ProductFormModal extends Component
 
         $repository = new ProductRepository();
         $product = $repository->findById($this->recordId);
+        $this->product = ArrayHandler::jsonDecodeEncode($product);
 
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($product->images);
-
-        dd($this->storedFiles);
     }
 
     public function updatedTag()
