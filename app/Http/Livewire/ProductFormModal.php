@@ -154,6 +154,7 @@ class ProductFormModal extends Component
         if (count($data->images) > 0) {
             $this->images = ArrayHandler::jsonDecodeEncode($data->images);
         }
+        dd($this->images);
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($data->images);
         $this->costPrice = Mask::money($data->costPrice);
 
