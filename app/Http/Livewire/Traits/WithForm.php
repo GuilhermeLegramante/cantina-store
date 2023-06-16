@@ -48,6 +48,8 @@ trait WithForm
 
             // $this->emit('hide' . ucfirst($this->entity) . 'FormModal');
 
+            $this->emit('scrollTop');
+
             // return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
             DB::rollback();
@@ -76,6 +78,8 @@ trait WithForm
             DB::commit();
 
             // $this->emit('hide' . ucfirst($this->entity) . 'FormModal');
+
+            $this->emit('scrollTop');
 
             // return redirect()->route($this->entity . '.table');
         } catch (\Exception $error) {
