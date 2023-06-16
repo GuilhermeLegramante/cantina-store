@@ -33,7 +33,7 @@ class ProductRepository
                 $this->table . '.updated_at AS updatedAt',
                 DB::raw("(select COUNT(`product_images`.`id`) from products AS products_2 inner join `product_images` on `product_images`.`product_id` = `products_2`.`id` where products.id = products_2.id
                 ) as totalImages"),
-                DB::raw("(select ifnull((SELECT product_images.path FROM `product_images` WHERE product_id = {$this->table}.id limit 1), '') as image"),
+                DB::raw("(select ifnull((SELECT product_images.path FROM `product_images` WHERE product_id = {$this->table}.id limit 1), '')) as image"),
             );
     }
 
