@@ -29,7 +29,11 @@
             @break
 
             @case('image')
+            @if($item->{$column['field']} != '')
             <img class="img" onerror="this.onerror=null; this.src='img/no-preview.jpg'" src="{{ Storage::disk('s3')->url($item->{$column['field']}) }}" style="width: 30px; height: 30px;">
+            @else
+            <img class="img" onerror="this.onerror=null; this.src='img/no-preview.jpg'" src="img/no-preview.jpg" style="width: 30px; height: 30px;">
+            @endif
             @break
 
             @case('checkbox')
