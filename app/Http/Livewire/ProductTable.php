@@ -66,8 +66,6 @@ class ProductTable extends Component
 
         $buttons = $this->rowButtons();
 
-        dd($data);
-
         return view('livewire.product-table', compact('data', 'buttons'));
     }
 }
