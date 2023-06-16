@@ -152,7 +152,7 @@ class ProductFormModal extends Component
         $this->barcode = $data->barcode;
         $this->weight = $data->weight;
         if (count($data->images) > 0) {
-            $this->images = $data->images;
+            $this->images = ArrayHandler::jsonDecodeEncode($data->images);
         }
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($data->images);
         $this->costPrice = Mask::money($data->costPrice);
