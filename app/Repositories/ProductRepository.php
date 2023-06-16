@@ -186,7 +186,6 @@ class ProductRepository
 
     private function uploadFiles($images, $productId)
     {
-        dd($images);
         foreach ($images as $file) {
             $path = '_cantina-store/produtos';
 
