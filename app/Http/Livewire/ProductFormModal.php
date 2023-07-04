@@ -224,17 +224,17 @@ class ProductFormModal extends Component
     {
         $this->description = 'TEXAS BURGER GRANEL';
 
-        $this->selectManufacturer(6);
+        $this->selectManufacturer(1);
 
         $this->costPrice = Mask::money(1.52);
 
         $this->selectCestncm(698);
 
-        $this->selectMeasurementUnit(2);
+        $this->selectMeasurementUnit(1);
 
         $repository = new ProductRepository();
 
-        $product = $repository->findById(2);
+        $product = $repository->findById(1);
 
         $this->product = ArrayHandler::jsonDecodeEncode($product);
 
