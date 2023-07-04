@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use DB;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $logged = $this->makeAuth($request->login, sha1(strtoupper($request->password)));
+        $logged = $this->makeAuth($request->login, sha1($request->password));
 
         if ($logged) {
             Session::put('isLogged', true);
@@ -29,13 +29,11 @@ class AuthController extends Controller
         }
     }
 
-
     public function makeAuth($login, $password)
     {
         $user = DB::table('users')
             ->where('login', '=', $login)
             ->where('password', '=', $password)->get()->first();
-
 
         if ($user != null) {
             Session::put('userId', $user->id);

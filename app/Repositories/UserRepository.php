@@ -67,7 +67,6 @@ class UserRepository
                 ]
             );
 
-
         return $userId;
     }
 
