@@ -6,6 +6,10 @@ Route::get('/login', 'AuthController@loginView')->name('loginView');
 Route::post('/login', 'AuthController@login')->name('login');
 Route::get('/sair', 'AuthController@logout')->name('logout');
 
+Route::get('/find-products', 'MainController@findProductsCode')->name('find-product');
+
+Route::get('/cosmos', 'MainController@findProductFromCosmosApi')->name('cosmos');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'MainController@dashboard')->name('dashboard');
 

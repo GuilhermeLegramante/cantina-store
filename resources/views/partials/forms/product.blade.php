@@ -13,6 +13,18 @@
     <div wire:ignore.self class="tab-content p-4" id="custom-content-below-tabContent">
         <div class="tab-pane fade {{ ($activeTab == 1) ? 'active show' : '' }}" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
             <div class="row">
+                @include('partials.inputs.text', [
+                'columnSize' => 6,
+                'label' => 'Código de Barras',
+                'model' => 'barcode',
+                ])
+                @include('partials.inputs.text', [
+                'columnSize' => 6,
+                'label' => 'Código',
+                'model' => 'code',
+                ])
+            </div>
+            <div class="row">
                 @include('partials.inputs.select-modal', [
                 'columnSize' => 12,
                 'label' => 'Fabricante*',
@@ -64,7 +76,7 @@
 
             </div>
 
-            @if($isEdition && count($storedFiles) > 0)
+            @if(count($storedFiles) > 0)
             @if(isset($product['images']))
             <div class="row mt-4">
                 <div class="col-sm-12">
@@ -99,18 +111,7 @@
             </div>
         </div>
         <div class="tab-pane fade {{ ($activeTab == 3) ? 'active show' : '' }}" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-            <div class="row">
-                @include('partials.inputs.text', [
-                'columnSize' => 6,
-                'label' => 'Código',
-                'model' => 'code',
-                ])
-                @include('partials.inputs.text', [
-                'columnSize' => 6,
-                'label' => 'Código de Barras',
-                'model' => 'barcode',
-                ])
-            </div>
+
             <div class="row">
                 @include('partials.inputs.text', [
                 'columnSize' => 12,

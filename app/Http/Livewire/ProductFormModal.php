@@ -220,6 +220,28 @@ class ProductFormModal extends Component
         $this->activeTab = $tab;
     }
 
+    public function updatedBarcode()
+    {
+        $this->description = 'TEXAS BURGER GRANEL';
+
+        $this->selectManufacturer(6);
+
+        $this->costPrice = Mask::money(1.52);
+
+        $this->selectCestncm(698);
+
+        $this->selectMeasurementUnit(2);
+
+        $repository = new ProductRepository();
+
+        $product = $repository->findById(2);
+
+        $this->product = ArrayHandler::jsonDecodeEncode($product);
+
+        $this->storedFiles = ArrayHandler::jsonDecodeEncode($product->images);
+
+    }
+
     public function render()
     {
         return view('livewire.product-form-modal');
