@@ -236,6 +236,8 @@ class ProductFormModal extends Component
 
         $product = $repository->findById(1);
 
+        $this->selectCategory(3);
+
         $this->product = ArrayHandler::jsonDecodeEncode($product);
 
         $this->storedFiles = ArrayHandler::jsonDecodeEncode($product->images);
