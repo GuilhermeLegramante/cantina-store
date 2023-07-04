@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $logged = $this->makeAuth($request->login, sha1($request->password));
+        $logged = $this->makeAuth($request->login, sha1(strtoupper($request->password)));
 
         if ($logged) {
             Session::put('isLogged', true);
