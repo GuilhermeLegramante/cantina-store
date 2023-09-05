@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_content')
-@include('partials.datatables.default')
+@include('partials.datatables.custom')
 
 @include('partials.table.float-menu')
 @endsection

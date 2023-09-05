@@ -1,5 +1,5 @@
 <div>
-    @include('pages.datatable')
+    @include('pages.custom-datatable')
 
     @livewire('product-form-modal')
 

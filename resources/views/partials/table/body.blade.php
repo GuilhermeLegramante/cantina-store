@@ -6,6 +6,8 @@
     <tr>
         @endif
         @foreach ($bodyColumns as $column)
+        @if(isset($column['visible']) && $column['visible'] == 'true')
+
         <td class="{{ isset($column['css']) ? $column['css'] : '' }} align-middle">
             @switch($column['type'])
             @case('string')
@@ -61,6 +63,7 @@
 
             @endswitch
         </td>
+        @endif
         @endforeach
         @if (isset($modalActionButtons))
         @foreach ($modalActionButtons as $button)
