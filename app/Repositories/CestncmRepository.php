@@ -2,11 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Traits\WithSingleColumnUpdate;
 use App\Services\LogService;
 use Illuminate\Support\Facades\DB;
 
 class CestncmRepository
 {
+    use WithSingleColumnUpdate;
+
     private $table = 'cest_ncm';
 
     private $baseQuery;

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Http\Livewire\Components\Button;
-use App\Http\Livewire\Traits\WithCustomDatatable;
 use App\Http\Livewire\Traits\WithDatatable;
 use App\Services\SessionService;
 use Illuminate\Support\Facades\App;
@@ -12,7 +11,7 @@ use Livewire\WithPagination;
 
 class ProductTable extends Component
 {
-    use WithDatatable, WithPagination, WithCustomDatatable;
+    use WithDatatable, WithPagination;
 
     public $entity;
     public $pageTitle;
@@ -23,21 +22,57 @@ class ProductTable extends Component
     public $formType = 'modal';
 
     public $headerColumns = [
-        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-5', 'visible' => 'true'],
-        ['field' => 'image', 'label' => 'Imagem', 'css' => 'text-center w-10', 'visible' => 'true'],
-        ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-80', 'visible' => 'true'],
-        ['field' => null, 'label' => 'Ações', 'css' => 'text-center w-5', 'visible' => 'true'],
+        [
+            'field' => 'id',
+            'label' => 'Código',
+            'css' => 'text-center w-5',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'image',
+            'label' => 'Imagem',
+            'css' => 'text-center w-10',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'description',
+            'label' => 'Descrição',
+            'css' => 'w-80',
+            'visible' => 'true',
+        ],
+        [
+            'field' => null,
+            'label' => 'Ações',
+            'css' => 'text-center w-5',
+            'visible' => 'true',
+        ],
     ];
 
     public $bodyColumns = [
-        ['field' => 'id', 'type' => 'string', 'css' => 'text-center', 'visible' => 'true'],
-        ['field' => 'image', 'type' => 'image', 'css' => 'text-center', 'visible' => 'true'],
-        ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px', 'visible' => 'true'],
+        [
+            'field' => 'id',
+            'type' => 'string',
+            'css' => 'text-center',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
+        [
+            'field' => 'image',
+            'type' => 'image',
+            'css' => 'text-center',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
+        [
+            'field' => 'description',
+            'type' => 'string',
+            'css' => 'pl-12px',
+            'visible' => 'true',
+            'editable' => 'true',
+        ],
     ];
 
     protected $repositoryClass = 'App\Repositories\ProductRepository';
-
-    public $teste = 'TESTE';
 
     public function mount()
     {

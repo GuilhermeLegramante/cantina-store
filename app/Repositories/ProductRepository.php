@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Traits\WithSingleColumnUpdate;
 use App\Services\LogService;
 use Illuminate\Support\Facades\DB;
 use Storage;
@@ -9,6 +10,8 @@ use Str;
 
 class ProductRepository
 {
+    use WithSingleColumnUpdate;
+
     private $table = 'products';
 
     private $baseQuery;

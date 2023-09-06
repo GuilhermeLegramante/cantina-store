@@ -22,18 +22,67 @@ class CestncmTable extends Component
     public $formType = 'modal';
 
     public $headerColumns = [
-        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-10'],
-        ['field' => 'cest', 'label' => 'CEST', 'css' => 'text-center w-10'],
-        ['field' => 'ncm', 'label' => 'NCM', 'css' => 'text-center w-10'],
-        ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-80'],
-        ['field' => null, 'label' => 'Ações', 'css' => 'text-center'],
+        [
+            'field' => 'id',
+            'label' => 'Código',
+            'css' => 'text-center w-10',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'cest',
+            'label' => 'CEST',
+            'css' => 'text-center w-10',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'ncm',
+            'label' => 'NCM',
+            'css' => 'text-center w-10',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'description',
+            'label' => 'Descrição',
+            'css' => 'w-80',
+            'visible' => 'true',
+        ],
+        [
+            'field' => null,
+            'label' => 'Ações',
+            'css' => 'text-center w-5',
+            'visible' => 'true',
+        ],
     ];
 
     public $bodyColumns = [
-        ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'cest', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'ncm', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px'],
+        [
+            'field' => 'id',
+            'type' => 'string',
+            'css' => 'text-center',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
+        [
+            'field' => 'cest',
+            'type' => 'string',
+            'css' => 'text-center',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
+        [
+            'field' => 'ncm',
+            'type' => 'string',
+            'css' => 'text-center',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
+        [
+            'field' => 'description',
+            'type' => 'string',
+            'css' => 'pl-12px',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
     ];
 
     protected $repositoryClass = 'App\Repositories\CestncmRepository';

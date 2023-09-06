@@ -2,6 +2,11 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Services\ErrorHandler;
+use App\Services\Mask;
+use DB;
+use Illuminate\Support\Facades\App;
+
 trait WithDatatable
 {
     public $sortBy = 'id';
@@ -11,6 +16,10 @@ trait WithDatatable
     public $search;
     public $hasForm = true;
     public $insertButtonOnSelectModal = false;
+
+    public $fieldIdInEdition;
+    public $columnNameInEdition;
+    public $valueInEdition;
 
     public function sortBy($field)
     {
@@ -66,6 +75,62 @@ trait WithDatatable
         // para evitar o erro "livewire gotopage doesnot exists"
         if (!isset($this->modalId)) {
             $this->gotoPage(1);
+        }
+    }
+
+    public function enableFieldEdition($id, $columnName, $value)
+    {
+        $this->fieldIdInEdition = $id;
+        $this->columnNameInEdition = $columnName;
+        $this->valueInEdition = $value;
+    }
+
+    public function updatedValueInEdition()
+    {
+        $repository = App::make($this->repositoryClass);
+
+        try {
+            DB::beginTransaction();
+
+            $repository = App::make($this->repositoryClass);
+
+            $data = [
+                'recordId' => $this->fieldIdInEdition,
+                'columnName' => $this->columnNameInEdition,
+                'columnValue' => Mask::normalizeString($this->valueInEdition),
+            ];
+
+            $repository->updateSingleColumn($data);
+
+            session()->flash('success', 'Registro editado com sucesso');
+
+            DB::commit();
+
+            $this->reset('fieldIdInEdition', 'columnNameInEdition');
+        } catch (\Exception $error) {
+            DB::rollback();
+
+            $errorMessage = ErrorHandler::resolveMySqlMessage($error);
+
+            session()->flash('error-details', $error->getMessage());
+            session()->flash('error', $errorMessage);
+
+            $this->reset('fieldIdInEdition', 'columnNameInEdition');
+        }
+    }
+
+    public function showHideColumn($column)
+    {
+        foreach ($this->headerColumns as $key => $value) {
+            if (isset($value['field']) && $value['field'] == $column) {
+                $this->headerColumns[$key]['visible'] = !$value['visible'];
+            }
+        }
+
+        foreach ($this->bodyColumns as $key => $value) {
+            if (isset($value['field']) && $value['field'] == $column) {
+                $this->bodyColumns[$key]['visible'] = !$value['visible'];
+            }
         }
     }
 }

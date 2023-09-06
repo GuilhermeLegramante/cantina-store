@@ -22,14 +22,41 @@ class CategoryTable extends Component
     public $formType = 'modal';
 
     public $headerColumns = [
-        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-10'],
-        ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-80'],
-        ['field' => null, 'label' => 'Ações', 'css' => 'text-center'],
+        [
+            'field' => 'id',
+            'label' => 'Código',
+            'css' => 'text-center w-10',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'description',
+            'label' => 'Descrição',
+            'css' => 'w-80',
+            'visible' => 'true',
+        ],
+        [
+            'field' => null,
+            'label' => 'Ações',
+            'css' => 'text-center w-5',
+            'visible' => 'true',
+        ],
     ];
 
     public $bodyColumns = [
-        ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px'],
+        [
+            'field' => 'id',
+            'type' => 'string',
+            'css' => 'text-center',
+            'visible' => 'true',
+            'editable' => 'false',
+        ],
+        [
+            'field' => 'description',
+            'type' => 'string',
+            'css' => 'pl-12px',
+            'visible' => 'true',
+            'editable' => 'true',
+        ],
     ];
 
     protected $repositoryClass = 'App\Repositories\CategoryRepository';

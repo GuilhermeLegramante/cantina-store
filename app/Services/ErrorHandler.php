@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Exception;
-use Illuminate\Support\Facades\Http;
 
 class ErrorHandler
 {
@@ -74,5 +73,14 @@ class ErrorHandler
         }
 
         return [];
+    }
+
+    public static function resolveMySqlMessage($error)
+    {
+        if (isset($error->errorInfo) && $error->errorInfo[0] == '23000') {
+            return config('messages.mysql.' . $error->errorInfo[1]);
+        } else {
+            return $error->getMessage();
+        }
     }
 }

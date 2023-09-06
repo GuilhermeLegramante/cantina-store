@@ -11,7 +11,14 @@
         <td class="{{ isset($column['css']) ? $column['css'] : '' }} align-middle">
             @switch($column['type'])
             @case('string')
-            {{ $item->{$column['field']} }}
+            <div wire:click="enableFieldEdition(`{{ $item->id }}`, `{{ $column['field'] }}`, `{{ $item->{$column['field']} }}`)">
+
+                @if($item->id == $fieldIdInEdition && $column['field'] == $columnNameInEdition && $column['editable'] == 'true')
+                <input class="form-control input-custom" type="text" wire:model.lazy='valueInEdition'>
+                @else
+                {{ $item->{$column['field']} }}
+                @endif
+            </div>
             @break
 
             @case('timestamps')

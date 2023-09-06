@@ -2,11 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Traits\WithSingleColumnUpdate;
 use App\Services\LogService;
 use Illuminate\Support\Facades\DB;
 
 class CsosnRepository
 {
+    use WithSingleColumnUpdate;
+
     private $table = 'csosn';
 
     private $baseQuery;

@@ -2,14 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\WithPagination;
 use App\Http\Livewire\Components\Button;
 use App\Http\Livewire\Traits\WithDatatable;
-use Livewire\Component;
 use App\Services\SessionService;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
-
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserTable extends Component
 {
@@ -24,16 +22,16 @@ class UserTable extends Component
     public $formType = 'page';
 
     public $headerColumns = [
-        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-15'],
-        ['field' => 'name', 'label' => 'Nome', 'css' => 'w-70'],
-        ['field' => 'isAdmin', 'label' => 'Administrador', 'css' => 'text-center w-15'],
-        ['field' => null, 'label' => 'Ações', 'css' => 'text-center'],
+        ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-15', 'visible' => 'true'],
+        ['field' => 'name', 'label' => 'Nome', 'css' => 'w-70', 'visible' => 'true'],
+        ['field' => 'isAdmin', 'label' => 'Administrador', 'css' => 'text-center w-15', 'visible' => 'true'],
+        ['field' => null, 'label' => 'Ações', 'css' => 'text-center', 'visible' => 'true'],
     ];
 
     public $bodyColumns = [
-        ['field' => 'id', 'type' => 'string', 'css' => 'text-center'],
-        ['field' => 'name', 'type' => 'string', 'css' => 'pl-12px'],
-        ['field' => 'isAdmin', 'type' => 'boolean', 'css' => 'text-center'],
+        ['field' => 'id', 'type' => 'string', 'css' => 'text-center', 'visible' => 'true', 'editable' => 'false'],
+        ['field' => 'name', 'type' => 'string', 'css' => 'pl-12px', 'visible' => 'true', 'editable' => 'true'],
+        ['field' => 'isAdmin', 'type' => 'boolean', 'css' => 'text-center', 'visible' => 'true', 'editable' => 'false'],
     ];
 
     protected $repositoryClass = 'App\Repositories\UserRepository';
