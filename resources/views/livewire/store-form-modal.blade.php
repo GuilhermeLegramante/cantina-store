@@ -6,5 +6,6 @@
     window.livewire.on('hideDemandFormModal', () => {
         $('#{{ $entity }}-form-modal').modal('hide');
     });
+
 </script>
 @endpush

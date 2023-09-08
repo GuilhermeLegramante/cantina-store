@@ -2,25 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\WithPagination;
 use App\Http\Livewire\Components\Button;
 use App\Http\Livewire\Traits\WithDatatable;
-use Livewire\Component;
 use App\Services\SessionService;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-
-class {{ tableComponentName }} extends Component
+class CustomerTable extends Component
 {
     use WithDatatable, WithPagination;
 
     public $entity;
     public $pageTitle;
-    public $icon = 'fas fa-list';
-    public $searchFieldsLabel = 'Código ou Descrição';
+    public $icon = 'fas fa-users';
+    public $searchFieldsLabel = 'Código ou Nome';
     public $hasForm = true;
-    public $formModalEmitMethod = 'show{{ entityUcFirst }}FormModal';
+    public $formModalEmitMethod = 'showCustomerFormModal';
     public $formType = 'modal';
 
     public $headerColumns = [
@@ -31,9 +29,15 @@ class {{ tableComponentName }} extends Component
             'visible' => 'true',
         ],
         [
-            'field' => 'description',
-            'label' => 'Descrição',
-            'css' => 'w-80',
+            'field' => 'name',
+            'label' => 'Nome',
+            'css' => 'w-40',
+            'visible' => 'true',
+        ],
+        [
+            'field' => 'document',
+            'label' => 'Documento',
+            'css' => 'w-40',
             'visible' => 'true',
         ],
         [
@@ -50,23 +54,30 @@ class {{ tableComponentName }} extends Component
             'type' => 'string',
             'css' => 'text-center',
             'visible' => 'true',
-            'editable' => 'false'
+            'editable' => 'false',
         ],
         [
-            'field' => 'description',
+            'field' => 'name',
             'type' => 'string',
             'css' => 'pl-12px',
             'visible' => 'true',
-            'editable' => 'false'
+            'editable' => 'true',
+        ],
+        [
+            'field' => 'document',
+            'type' => 'string',
+            'css' => 'pl-12px',
+            'visible' => 'true',
+            'editable' => 'true',
         ],
     ];
 
-    protected $repositoryClass = 'App\Repositories\{{ entityUcFirst }}Repository';
+    protected $repositoryClass = 'App\Repositories\CustomerRepository';
 
     public function mount()
     {
-        $this->entity = '{{ entity }}';
-        $this->pageTitle = '{{ entityPtBr }}';
+        $this->entity = 'customer';
+        $this->pageTitle = 'Cliente';
 
         SessionService::start();
     }
@@ -93,6 +104,6 @@ class {{ tableComponentName }} extends Component
 
         $buttons = $this->rowButtons();
 
-        return view('livewire.{{ tableViewName }}', compact('data', 'buttons'));
+        return view('livewire.customer-table', compact('data', 'buttons'));
     }
 }

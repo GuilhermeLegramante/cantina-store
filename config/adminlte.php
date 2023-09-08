@@ -244,6 +244,12 @@ return [
                     'active' => ['cfop/*'],
                 ],
                 [
+                    'text' => 'Clientes',
+                    'icon' => 'nav-icon fas fa-users',
+                    'url' => '/cliente',
+                    'active' => ['cliente/*'],
+                ],
+                [
                     'text' => 'CSOSN',
                     'icon' => 'nav-icon fas fa-list',
                     'url' => '/csosn',
@@ -254,6 +260,18 @@ return [
                     'icon' => 'nav-icon fas fa-building',
                     'url' => '/fabricante',
                     'active' => ['fabricante/*'],
+                ],
+                [
+                    'text' => 'Lojas',
+                    'icon' => 'nav-icon fas fa-store',
+                    'url' => '/loja',
+                    'active' => ['loja/*'],
+                ],
+                [
+                    'text' => 'Tipos de Saída',
+                    'icon' => 'nav-icon fas fa-file-export',
+                    'url' => '/tipo-de-saida',
+                    'active' => ['tipo-de-saida/*'],
                 ],
                 [
                     'text' => 'Unidade de Medida',

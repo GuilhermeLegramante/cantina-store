@@ -6,11 +6,11 @@ use App\Services\LogService;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Traits\WithSingleColumnUpdate;
 
-class {{ entityUcFirst }}Repository
+class CustomerRepository
 {
     use WithSingleColumnUpdate;
 
-    private $table = '{{ table }}';
+    private $table = 'customers';
 
     private $baseQuery;
 
@@ -19,7 +19,9 @@ class {{ entityUcFirst }}Repository
         $this->baseQuery = DB::table($this->table)
             ->select(
                 $this->table . '.id AS id',
-                $this->table . '.description AS description',
+                $this->table . '.name AS description',
+                $this->table . '.name AS name',
+                $this->table . '.document AS document',
                 $this->table . '.created_at AS createdAt',
                 $this->table . '.updated_at AS updatedAt',
             );
@@ -32,7 +34,7 @@ class {{ entityUcFirst }}Repository
                 [$this->table . '.id', 'like', '%' . $search . '%'],
             ])
             ->orWhere([
-                [$this->table . '.description', 'like', '%' . $search . '%'],
+                [$this->table . '.name', 'like', '%' . $search . '%'],
             ])
             ->orderBy($sortBy, $sortDirection)
             ->paginate($perPage);
@@ -57,8 +59,8 @@ class {{ entityUcFirst }}Repository
         $registerId = DB::table($this->table)
             ->insertGetId(
                 [
-                    'description' => $data['description'],
-                    'user_id' => session()->get('userId'),
+                    'name' => $data['name'],
+                    'document' => $data['document'],
                     'created_at' => now(),
                 ]
             );
@@ -83,8 +85,8 @@ class {{ entityUcFirst }}Repository
             ->where('id', $data['recordId'])
             ->update(
                 [
-                    'description' => $data['description'],
-                    'user_id' => session()->get('userId'),
+                    'name' => $data['name'],
+                    'document' => $data['document'],
                     'updated_at' => now(),
                 ]
             );
