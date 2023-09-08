@@ -256,6 +256,12 @@ return [
                     'active' => ['fabricante/*'],
                 ],
                 [
+                    'text' => 'Lojas',
+                    'icon' => 'nav-icon fas fa-store',
+                    'url' => '/loja',
+                    'active' => ['loja/*'],
+                ],
+                [
                     'text' => 'Unidade de Medida',
                     'icon' => 'nav-icon fas fa-list',
                     'url' => '/unidade-de-medida',

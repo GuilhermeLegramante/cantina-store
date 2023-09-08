@@ -48,4 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/produto')->group(function () {
         Route::get('/', 'ProductController@table')->name('product.table');
     });
+
+    Route::prefix('/loja')->group(function () {
+        Route::get('/', 'StoreController@table')->name('store.table');
+    });
 });

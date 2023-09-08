@@ -11,8 +11,9 @@ class TestController extends Controller
         return view('parent.test-table');
     }
 
-    public function xml() : string {
-        $xml = Storage::disk('local')->get('Cantina-NFe.xml');
+    public function xml(): string
+    {
+        $xml = Storage::get('Cantina-NFe.xml');
 
         $xmlObj = simplexml_load_string($xml);
         $json = json_encode($xmlObj);
