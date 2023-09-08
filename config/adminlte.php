@@ -244,6 +244,12 @@ return [
                     'active' => ['cfop/*'],
                 ],
                 [
+                    'text' => 'Clientes',
+                    'icon' => 'nav-icon fas fa-users',
+                    'url' => '/cliente',
+                    'active' => ['cliente/*'],
+                ],
+                [
                     'text' => 'CSOSN',
                     'icon' => 'nav-icon fas fa-list',
                     'url' => '/csosn',
