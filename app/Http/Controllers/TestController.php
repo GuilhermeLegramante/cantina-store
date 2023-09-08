@@ -22,6 +22,8 @@ class TestController extends Controller
         // dd($res['NFe']['infNFe']['ide']['cNF']); // Código sequencial da NF-e
         dd($res['NFe']['infNFe']['det']); // Itens da NF-e
 
+        //Alteração para teste de push
+
         return $xml;
     }
 }
