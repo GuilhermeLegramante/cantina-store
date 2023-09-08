@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Repositories\CestncmRepository;
 
 class CreateCestNcmTable extends Migration
 {
@@ -20,6 +21,9 @@ class CreateCestNcmTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        $cest = new CestncmRepository();
+        $cest->populate();
     }
 
     /**

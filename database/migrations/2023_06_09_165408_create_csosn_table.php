@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Repositories\CsosnRepository;
 
 class CreateCsosnTable extends Migration
 {
@@ -19,6 +20,9 @@ class CreateCsosnTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        $cson = new CsosnRepository();
+        $cson->populate();
     }
 
     /**

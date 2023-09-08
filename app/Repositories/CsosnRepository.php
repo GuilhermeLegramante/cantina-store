@@ -121,4 +121,19 @@ class CsosnRepository
             ->get()
             ->first();
     }
+
+    public function populate() {
+        DB::table($this->table)->insertOrIgnore([
+            ['code' => '101', 'description' => 'Tributada pelo Simples Nacional com permissão de crédito de ICMS'],
+            ['code' => '102', 'description' => 'Tributada pelo Simples Nacional sem permissão de crédito'],
+            ['code' => '103', 'description' => 'Isenção de ICMS no Simples Nacional na faixa de receita brutaMS'],
+            ['code' => '201', 'description' => 'Tributada pelo Simples Nacional com permissão de crédito e cobrança do ICMS por ST '],
+            ['code' => '202', 'description' => 'Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS por ST'],
+            ['code' => '203', 'description' => 'Isenção do ICMS no Simples Nacional para faixa de receita bruta e cobrança de ICMS por ST'],
+            ['code' => '300', 'description' => 'Imune de ICMS'],
+            ['code' => '400', 'description' => 'Não tributada pelo Simples Nacional'],
+            ['code' => '500', 'description' => 'ICMS cobrado anteriormente por ST ou por antecipação'],
+            ['code' => '900', 'description' => 'Outros - Operações que não se enquadram nos códigos anteriores']
+        ]);
+    }
 }
