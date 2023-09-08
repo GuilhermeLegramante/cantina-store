@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/teste', 'TestController@xml')->name('test');
+
 Route::get('/login', 'AuthController@loginView')->name('loginView');
 Route::post('/login', 'AuthController@login')->name('login');
 Route::get('/sair', 'AuthController@logout')->name('logout');
