@@ -268,6 +268,12 @@ return [
                     'active' => ['loja/*'],
                 ],
                 [
+                    'text' => 'Tipos de Saída',
+                    'icon' => 'nav-icon fas fa-file-export',
+                    'url' => '/tipo-de-saida',
+                    'active' => ['tipo-de-saida/*'],
+                ],
+                [
                     'text' => 'Unidade de Medida',
                     'icon' => 'nav-icon fas fa-list',
                     'url' => '/unidade-de-medida',

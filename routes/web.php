@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'StoreController@table')->name('store.table');
     });
 
+    Route::prefix('/tipo-de-saida')->group(function () {
+        Route::get('/', 'TypeController@table')->name('type.table');
+    });
+
     Route::prefix('/cliente')->group(function () {
         Route::get('/', 'CustomerController@table')->name('customer.table');
     });
