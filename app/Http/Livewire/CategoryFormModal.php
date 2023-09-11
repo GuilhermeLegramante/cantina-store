@@ -54,6 +54,8 @@ class CategoryFormModal extends Component
             if (isset($data)) {
                 $this->setFields($data);
             }
+        } else {
+            $this->reset('recordId', 'description');
         }
     }
 
