@@ -8,7 +8,8 @@ class Invoice {
 
     public $identify;
     public $products;
-    // public $issuer;
+    public $issuer;
+    public $payment;
 
     private function setIdentify(object $ide, string $id) : object {
         $obj = [
@@ -28,13 +29,30 @@ class Invoice {
         return (object) $obj;
     }
 
-    // private function setIssuer(object $emit) : object {
-    //     $obj = [
+    private function setIssuer(object $emit) : object {
+        $addr = (object) $emit->enderEmit;
 
-    //     ];
+        $obj = [
+            'cnpj' => $emit->CNPJ,
+            'ie' => $emit->IE,
+            'crt' => isset($emit->CRT) ? $emit->CRT : null,
+            'name' => $emit->xNome,
+            'corpName' => $emit->xFant,
+            'address' => (object) [
+                'street' => $addr->xLgr,
+                'number' => $addr->nro,
+                'district' => $addr->xBairro,
+                'postalCode' => $addr->CEP,
+                'city' => $addr->xMun,
+                'country' => (object) [
+                    'code' => $addr->cPais,
+                    'name' => $addr->xPais
+                ]
+            ]
+        ];
 
-    //     return (object) $obj;
-    // }
+        return (object) $obj;
+    }
 
     private function setProducts(array $items) : array {
         $prods = [];
@@ -62,6 +80,16 @@ class Invoice {
 
         return $prods;
     }
+
+    private function setPayment(object $pay) {
+        $obj = [
+            'mode' => $pay->indPag,
+            'type' => $pay->tPag,
+            'value' => $pay->vPag
+        ];
+        
+        return (object) $obj;
+    }
   
     public function __construct(string $xml) {
         
@@ -72,11 +100,9 @@ class Invoice {
         $json = json_encode($this->xmlObj);
         $this->jsonNfe = json_decode($json, true);
 
-        // $this->objEmit = (object) $this->jsonNfe['NFe']['infNFe']['emit'];
-        // $this->objDest = (object) $this->jsonNfe['NFe']['infNFe']['dest'];
-        // $this->objPag = (object) $this->jsonNfe['NFe']['infNFe']['pag']['detPag'];
-
         $this->identify = $this->setIdentify((object) $this->jsonNfe['NFe']['infNFe']['ide'], $this->jsonNfe['NFe']['infNFe']['@attributes']['Id']);
+        $this->issuer = $this->setIssuer((object) $this->jsonNfe['NFe']['infNFe']['emit']);
         $this->products = $this->setProducts($this->jsonNfe['NFe']['infNFe']['det']);
+        $this->payment = $this->setPayment((object) $this->jsonNfe['NFe']['infNFe']['pag']['detPag']);
     }
 }
