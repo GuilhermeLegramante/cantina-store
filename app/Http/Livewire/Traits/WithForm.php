@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Services\ErrorHandler;
 use App\Services\FormService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -54,10 +55,10 @@ trait WithForm
         } catch (\Exception $error) {
             DB::rollback();
 
-            session()->flash('error-details', $error->getMessage());
+            $errorMessage = ErrorHandler::resolveMySqlMessage($error);
 
-            isset($error->errorInfo) && $error->errorInfo[0] == '23000' ? session()->flash('error', config('messages.mysql.' . $error->errorInfo[1])) :
-            session()->flash('error', $error->getMessage());
+            session()->flash('error-details', $error->getMessage());
+            session()->flash('error', $errorMessage);
         }
     }
 
@@ -85,10 +86,10 @@ trait WithForm
         } catch (\Exception $error) {
             DB::rollback();
 
-            session()->flash('error-details', $error->getMessage());
+            $errorMessage = ErrorHandler::resolveMySqlMessage($error);
 
-            isset($error->errorInfo) && $error->errorInfo[0] == '23000' ? session()->flash('error', config('messages.mysql.' . $error->errorInfo[1])) :
-            session()->flash('error', $error->getMessage());
+            session()->flash('error-details', $error->getMessage());
+            session()->flash('error', $errorMessage);
         }
     }
 
@@ -112,10 +113,10 @@ trait WithForm
 
             $this->emit('close');
 
-            session()->flash('error-details', $error->getMessage());
+            $errorMessage = ErrorHandler::resolveMySqlMessage($error);
 
-            isset($error->errorInfo) && $error->errorInfo[0] == '23000' ? session()->flash('error', config('messages.mysql.' . $error->errorInfo[1])) :
-            session()->flash('error', $error->getMessage());
+            session()->flash('error-details', $error->getMessage());
+            session()->flash('error', $errorMessage);
         }
     }
 }

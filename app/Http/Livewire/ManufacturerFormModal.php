@@ -54,6 +54,10 @@ class ManufacturerFormModal extends Component
             if (isset($data)) {
                 $this->setFields($data);
             }
+        } else {
+            $this->isEdition = false;
+
+            $this->reset('recordId', 'name');
         }
     }
 

@@ -69,6 +69,10 @@ class UserForm extends Component
             if (isset($data)) {
                 $this->setFields($data);
             }
+        } else {
+            $this->isEdition = false;
+
+            $this->reset('recordId', 'name', 'login', 'password', 'password_confirmation', 'email', 'isAdmin');
         }
     }
 

@@ -55,6 +55,8 @@ class CategoryFormModal extends Component
                 $this->setFields($data);
             }
         } else {
+            $this->isEdition = false;
+
             $this->reset('recordId', 'description');
         }
     }
