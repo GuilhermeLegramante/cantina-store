@@ -16,21 +16,21 @@ class StoreTable extends Component
     public $entity;
     public $pageTitle;
     public $icon = 'fas fa-store';
-    public $searchFieldsLabel = 'Código ou Nome';
+    public $searchFieldsLabel = 'Código ou Descrição';
     public $hasForm = true;
     public $formModalEmitMethod = 'showStoreFormModal';
     public $formType = 'modal';
 
     public $headerColumns = [
         ['field' => 'id', 'label' => 'Código', 'css' => 'text-center w-10', 'visible' => 'true'],
-        ['field' => 'name', 'label' => 'Nome', 'css' => 'w-40', 'visible' => 'true'],
+        ['field' => 'description', 'label' => 'Descrição', 'css' => 'w-40', 'visible' => 'true'],
         ['field' => 'document', 'label' => 'Documento', 'css' => 'w-40', 'visible' => 'true'],
         ['field' => null, 'label' => 'Ações', 'css' => 'text-center w-5', 'visible' => 'true'],
     ];
 
     public $bodyColumns = [
         ['field' => 'id', 'type' => 'string', 'css' => 'text-center', 'visible' => 'true', 'editable' => 'false'],
-        ['field' => 'name', 'type' => 'string', 'css' => 'pl-12px', 'visible' => 'true', 'editable' => 'true'],
+        ['field' => 'description', 'type' => 'string', 'css' => 'pl-12px', 'visible' => 'true', 'editable' => 'true'],
         ['field' => 'document', 'type' => 'string', 'css' => 'pl-12px', 'visible' => 'true', 'editable' => 'true'],
     ];
 
