@@ -42,7 +42,8 @@ return [
     |
      */
 
-    'asset_url' => env('LIVEWIRE_ASSETS'),
+    // 'asset_url' => env('LIVEWIRE_ASSETS'),
+    'asset_url' => '/cantina-store/public',
 
     /*
     |--------------------------------------------------------------------------
