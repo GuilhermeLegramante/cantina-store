@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class LogService
 {
+    const optInsert = 'I';
+    const optUpdate = 'U';
+    const optDelete = 'D';
+
     public static function saveLog($userId, $table, $operation, $datetime, $originalData, $modifiedData)
     {
         File::append(
