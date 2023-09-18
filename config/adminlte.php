@@ -212,12 +212,7 @@ return [
             'text' => 'Cadastros',
             'icon' => 'nav-icon fas fa-file-alt',
             'submenu' => [
-                [
-                    'text' => 'Produtos',
-                    'icon' => 'nav-icon fas fa-barcode',
-                    'url' => '/produto',
-                    'active' => ['produto/*'],
-                ],
+
             ],
 
         ],
@@ -266,6 +261,12 @@ return [
                     'icon' => 'nav-icon fas fa-store',
                     'url' => '/loja',
                     'active' => ['loja/*'],
+                ],
+                [
+                    'text' => 'Produtos',
+                    'icon' => 'nav-icon fas fa-barcode',
+                    'url' => '/produto',
+                    'active' => ['produto/*'],
                 ],
                 [
                     'text' => 'Tipos de Saída',
