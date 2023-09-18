@@ -19,8 +19,7 @@ class StoreRepository
         $this->baseQuery = DB::table($this->table)
             ->select(
                 $this->table . '.id AS id',
-                $this->table . '.name AS description',
-                $this->table . '.name AS name',
+                $this->table . '.description AS description',
                 $this->table . '.document AS document',
                 $this->table . '.created_at AS createdAt',
                 $this->table . '.updated_at AS updatedAt',
@@ -34,7 +33,7 @@ class StoreRepository
                 [$this->table . '.id', 'like', '%' . $search . '%'],
             ])
             ->orWhere([
-                [$this->table . '.name', 'like', '%' . $search . '%'],
+                [$this->table . '.description', 'like', '%' . $search . '%'],
             ])
             ->orderBy($sortBy, $sortDirection)
             ->paginate($perPage);
@@ -59,9 +58,9 @@ class StoreRepository
         $registerId = DB::table($this->table)
             ->insertGetId(
                 [
-                    'name' => $data['name'],
+                    'description' => $data['description'],
                     'document' => $data['document'],
-                    'users_id' => session()->get('userId'),
+                    'user_id' => session()->get('userId'),
                     'created_at' => now(),
                 ]
             );
@@ -86,9 +85,9 @@ class StoreRepository
             ->where('id', $data['recordId'])
             ->update(
                 [
-                    'name' => $data['name'],
+                    'description' => $data['description'],
                     'document' => $data['document'],
-                    'users_id' => session()->get('userId'),
+                    'user_id' => session()->get('userId'),
                     'updated_at' => now(),
                 ]
             );

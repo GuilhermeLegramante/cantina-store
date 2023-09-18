@@ -19,12 +19,12 @@ class CustomerFormModal extends Component
 
     protected $repositoryClass = 'App\Repositories\CustomerRepository';
 
-    public $name;
+    public $description;
     public $document;
 
     protected $inputs = [
         ['field' => 'recordId', 'edit' => true],
-        ['field' => 'name', 'edit' => true, 'type' => 'string'],
+        ['field' => 'description', 'edit' => true, 'type' => 'string'],
         ['field' => 'document', 'edit' => true, 'type' => 'string'],
 
     ];
@@ -34,14 +34,14 @@ class CustomerFormModal extends Component
     ];
 
     protected $validationAttributes = [
-        'name' => 'Nome',
+        'description' => 'Descrição',
         'document' => 'Documento',
     ];
 
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'description' => ['required'],
             'document' => ['required'],
         ];
     }
@@ -63,7 +63,7 @@ class CustomerFormModal extends Component
         } else {
             $this->isEdition = false;
 
-            $this->reset('recordId', 'name', 'document');
+            $this->reset('recordId', 'description', 'document');
         }
     }
 
@@ -91,7 +91,7 @@ class CustomerFormModal extends Component
     public function setFields($data)
     {
         $this->recordId = $data->id;
-        $this->name = $data->name;
+        $this->description = $data->description;
         $this->document = $data->document;
 
     }

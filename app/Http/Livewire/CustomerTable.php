@@ -16,7 +16,7 @@ class CustomerTable extends Component
     public $entity;
     public $pageTitle;
     public $icon = 'fas fa-users';
-    public $searchFieldsLabel = 'Código ou Nome';
+    public $searchFieldsLabel = 'Código ou Descrição';
     public $hasForm = true;
     public $formModalEmitMethod = 'showCustomerFormModal';
     public $formType = 'modal';
@@ -29,8 +29,8 @@ class CustomerTable extends Component
             'visible' => 'true',
         ],
         [
-            'field' => 'name',
-            'label' => 'Nome',
+            'field' => 'description',
+            'label' => 'Descrição',
             'css' => 'w-40',
             'visible' => 'true',
         ],
