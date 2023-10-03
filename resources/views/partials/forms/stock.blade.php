@@ -22,7 +22,13 @@
                 'cleanFields' => 'storeId,storeDescription',
                 ])
             </div>
-
+            <div class="row">
+                @include('partials.inputs.file', [
+                'columnSize' => 12,
+                'label' => 'Arquivo da NF-e',
+                'model' => 'nfe',
+                ])
+            </div>
         </div>
         <div class="tab-pane fade {{ ($activeTab == 2) ? 'active show' : '' }}" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
             <div class="row">

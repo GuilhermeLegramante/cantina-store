@@ -2,7 +2,8 @@
 
 namespace App\Services\Nfe;
 
-class Invoice {
+class Invoice
+{
     private $xmlObj;
     private $jsonNfe;
 
@@ -11,7 +12,8 @@ class Invoice {
     public $issuer;
     public $payment;
 
-    private function setIdentify(object $ide, string $id) : object {
+    private function setIdentify(object $ide, string $id): object
+    {
         $obj = [
             'id' => $id,
             'uf' => $ide->cUF,
@@ -23,13 +25,14 @@ class Invoice {
             'operation' => $ide->tpNF,
             'city' => $ide->cMunFG,
             'type' => $ide->tpEmis,
-            'finality' => $ide->finNFe
+            'finality' => $ide->finNFe,
         ];
 
         return (object) $obj;
     }
 
-    private function setIssuer(object $emit) : object {
+    private function setIssuer(object $emit): object
+    {
         $addr = (object) $emit->enderEmit;
 
         $obj = [
@@ -46,15 +49,16 @@ class Invoice {
                 'city' => $addr->xMun,
                 'country' => (object) [
                     'code' => $addr->cPais,
-                    'name' => $addr->xPais
-                ]
-            ]
+                    'name' => $addr->xPais,
+                ],
+            ],
         ];
 
         return (object) $obj;
     }
 
-    private function setProducts(array $items) : array {
+    private function setProducts(array $items): array
+    {
         $prods = [];
 
         foreach ($items as $item) {
@@ -72,7 +76,7 @@ class Invoice {
                 'amount' => $obj->qCom,
                 'unitaryValue' => $obj->vUnCom,
                 'totalValue' => $obj->vProd,
-                'makeTotalValue' => $obj->indTot
+                'makeTotalValue' => $obj->indTot,
             ];
 
             $prods[] = (object) $prod;
@@ -81,18 +85,20 @@ class Invoice {
         return $prods;
     }
 
-    private function setPayment(object $pay) {
+    private function setPayment(object $pay)
+    {
         $obj = [
             'mode' => $pay->indPag,
             'type' => $pay->tPag,
-            'value' => $pay->vPag
+            'value' => $pay->vPag,
         ];
-        
+
         return (object) $obj;
     }
-  
-    public function __construct(string $xml) {
-        
+
+    public function __construct(string $xml)
+    {
+
         // Salvar o xml original da NF-e
         $this->xmlObj = simplexml_load_string($xml);
 

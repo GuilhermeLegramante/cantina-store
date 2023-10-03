@@ -46,9 +46,6 @@ class ProductFormModal extends Component
 
     public $images = [];
 
-    // Controle do campo input:file que não limpa o cache sozinho
-    public $iteration = 1;
-
     protected $inputs = [
         ['field' => 'recordId', 'edit' => true],
         ['field' => 'description', 'edit' => true, 'type' => 'string'],

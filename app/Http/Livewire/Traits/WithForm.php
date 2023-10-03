@@ -13,6 +13,9 @@ trait WithForm
     public $isEdition = false;
     public $recordId;
 
+    // Controle do campo input:file que não limpa o cache sozinho
+    public $iteration = 1;
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, $this->rules());

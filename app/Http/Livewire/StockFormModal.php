@@ -8,11 +8,15 @@ use App\Http\Livewire\Traits\Selects\WithStoreSelect;
 use App\Http\Livewire\Traits\WithForm;
 use App\Http\Livewire\Traits\WithTabs;
 use App\Services\Mask;
+use App\Services\Nfe\Invoice;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Storage;
+use Str;
 
 class StockFormModal extends Component
 {
-    use WithForm, WithStoreSelect, WithProductSelect, WithTabs;
+    use WithForm, WithStoreSelect, WithProductSelect, WithTabs, WithFileUploads;
 
     public $entity;
     public $pageTitle;
@@ -25,6 +29,7 @@ class StockFormModal extends Component
     public $products = [];
     public $value;
     public $quantity;
+    public $nfe;
 
     public $totalItemsValue;
 
@@ -55,6 +60,7 @@ class StockFormModal extends Component
         'value' => 'Valor',
         'quantity' => 'Quantidade',
         'products' => 'Produtos',
+        'nfe' => 'Nota Fiscal',
     ];
 
     public function rules()
@@ -62,12 +68,13 @@ class StockFormModal extends Component
         return [
             'storeId' => ['required'],
             'products' => ['required'],
+            'nfe' => ['mimes:application/xml,xml', 'nullable'],
         ];
     }
 
     public function showStockFormModal($id = null)
     {
-        $this->reset('recordId', 'storeId', 'products');
+        $this->reset('recordId', 'storeId', 'products', 'nfe');
 
         $this->resetValidation();
 
@@ -167,6 +174,22 @@ class StockFormModal extends Component
         }
 
         $this->totalItemsValue = Mask::money($this->totalItemsValue);
+    }
+
+    public function updatedNfe()
+    {
+        $filename = Str::random(4) . '_' . $this->nfe->getClientOriginalName();
+
+        $filePath = Storage::putFileAs('nfe', $this->nfe, $filename);
+
+        $xml = Storage::get($filePath);
+
+        $invoice = new Invoice($xml);
+
+        Storage::delete($filePath);
+
+        dd($invoice);
+
     }
 
     public function render()
