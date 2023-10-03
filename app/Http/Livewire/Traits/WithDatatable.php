@@ -32,7 +32,7 @@ trait WithDatatable
         $this->perPage = 30;
     }
 
-    public function resetFieldsDynamicly($fields)
+    public function resetFieldsDynamically($fields)
     {
         $this->reset($fields);
         $this->perPage = 30;

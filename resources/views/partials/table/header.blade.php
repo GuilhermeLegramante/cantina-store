@@ -3,6 +3,7 @@
         @foreach ($headerColumns as $item)
         @if(isset($item['visible']) && $item['visible'] == 'true')
         @if ($item['field'])
+
         <th wire:click="sortBy('{{ $item['field'] }}')" class=" {{ isset($item['css']) ? $item['css'] : '' }}">
             @else
         <th class=" {{ isset($item['css']) ? $item['css'] : '' }}">

@@ -60,4 +60,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/cliente')->group(function () {
         Route::get('/', 'CustomerController@table')->name('customer.table');
     });
+
+    Route::prefix('/estoque')->group(function () {
+        Route::get('/', 'StockController@table')->name('stock.table');
+    });
 });

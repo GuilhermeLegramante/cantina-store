@@ -226,25 +226,25 @@ class ProductFormModal extends Component
 
     public function updatedBarcode()
     {
-        $this->description = 'TEXAS BURGER GRANEL';
+        // $this->description = 'TEXAS BURGER GRANEL';
 
-        $this->selectManufacturer(1);
+        // $this->selectManufacturer(1);
 
-        $this->costPrice = Mask::money(1.52);
+        // $this->costPrice = Mask::money(1.52);
 
-        $this->selectCestncm(698);
+        // $this->selectCestncm(698);
 
-        $this->selectMeasurementUnit(1);
+        // $this->selectMeasurementUnit(1);
 
-        $repository = new ProductRepository();
+        // $repository = new ProductRepository();
 
-        $product = $repository->findById(1);
+        // $product = $repository->findById(1);
 
-        $this->selectCategory(3);
+        // $this->selectCategory(3);
 
-        $this->product = ArrayHandler::jsonDecodeEncode($product);
+        // $this->product = ArrayHandler::jsonDecodeEncode($product);
 
-        $this->storedFiles = ArrayHandler::jsonDecodeEncode($product->images);
+        // $this->storedFiles = ArrayHandler::jsonDecodeEncode($product->images);
 
     }
 

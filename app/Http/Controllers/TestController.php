@@ -14,7 +14,7 @@ class TestController extends Controller
 
     public function xml(): string
     {
-        $xml = Storage::disk('local')->get('Cantina-NFe.xml');
+        $xml = Storage::get('Cantina-NFe.xml');
 
         $xmlObj = simplexml_load_string($xml);
         $json = json_encode($xmlObj);

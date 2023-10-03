@@ -212,7 +212,12 @@ return [
             'text' => 'Cadastros',
             'icon' => 'nav-icon fas fa-file-alt',
             'submenu' => [
-
+                [
+                    'text' => 'Estoque',
+                    'icon' => 'nav-icon fas fa-cubes',
+                    'url' => '/estoque',
+                    'active' => ['estoque/*'],
+                ],
             ],
 
         ],
