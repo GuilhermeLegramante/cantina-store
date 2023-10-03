@@ -72,8 +72,8 @@ class ProductRepository
         $registerId = DB::table($this->table)
             ->insertGetId(
                 [
-                    'manufacturer_id' => $data['manufacturerId'],
-                    'category_id' => $data['categoryId'],
+                    'manufacturer_id' => isset($data['manufacturerId']) ? $data['manufacturerId'] : null,
+                    'category_id' => isset($data['categoryId']) ? $data['categoryId'] : null,
                     'description' => $data['description'],
                     'code' => isset($data['code']) ? $data['code'] : null,
                     'barcode' => isset($data['barcode']) ? $data['barcode'] : null,
@@ -116,8 +116,8 @@ class ProductRepository
             ->where('id', $data['recordId'])
             ->update(
                 [
-                    'manufacturer_id' => $data['manufacturerId'],
-                    'category_id' => $data['categoryId'],
+                    'manufacturer_id' => isset($data['manufacturerId']) ? $data['manufacturerId'] : null,
+                    'category_id' => isset($data['categoryId']) ? $data['categoryId'] : null,
                     'description' => $data['description'],
                     'code' => isset($data['code']) ? $data['code'] : null,
                     'barcode' => isset($data['barcode']) ? $data['barcode'] : null,
@@ -185,6 +185,21 @@ class ProductRepository
         $product->tags = $tags;
 
         return $product;
+    }
+
+    public function findByCode($code)
+    {
+        $product = DB::table('products')
+            ->where($this->table . '.code', $code)
+            ->select('id')
+            ->get()
+            ->first();
+
+        if (isset($product)) {
+            return $this->findById($product->id);
+        } else {
+            return null;
+        }
     }
 
     private function uploadFiles($images, $productId)

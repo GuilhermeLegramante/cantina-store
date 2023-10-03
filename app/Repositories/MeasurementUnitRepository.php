@@ -55,7 +55,7 @@ class MeasurementUnitRepository
             null
         );
 
-        $userId = DB::table($this->table)
+        $measurementUnit = DB::table($this->table)
             ->insertGetId(
                 [
                     'description' => $data['description'],
@@ -65,7 +65,7 @@ class MeasurementUnitRepository
                 ]
             );
 
-        return $userId;
+        return $measurementUnit;
     }
 
     public function update($data)
@@ -115,6 +115,14 @@ class MeasurementUnitRepository
     {
         return $this->baseQuery
             ->where($this->table . '.id', $id)
+            ->get()
+            ->first();
+    }
+
+    public function findByDescription($description)
+    {
+        return $this->baseQuery
+            ->where($this->table . '.description', $description)
             ->get()
             ->first();
     }

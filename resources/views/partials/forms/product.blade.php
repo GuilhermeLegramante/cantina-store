@@ -27,7 +27,7 @@
             <div class="row">
                 @include('partials.inputs.select-modal', [
                 'columnSize' => 12,
-                'label' => 'Fabricante*',
+                'label' => 'Fabricante',
                 'method' => 'showManufacturerSelectModal',
                 'model' => 'manufacturerId',
                 'description' => $manufacturerDescription,
@@ -39,7 +39,7 @@
             <div class="row">
                 @include('partials.inputs.select-modal', [
                 'columnSize' => 12,
-                'label' => 'Categoria*',
+                'label' => 'Categoria',
                 'method' => 'showCategorySelectModal',
                 'model' => 'categoryId',
                 'description' => $categoryDescription,

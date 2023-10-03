@@ -122,6 +122,14 @@ class CfopRepository
             ->first();
     }
 
+    public function findByCode($code)
+    {
+        return $this->baseQuery
+            ->where($this->table . '.code', $code)
+            ->get()
+            ->first();
+    }
+
     public function populate() {
         DB::table($this->table)->insertOrIgnore([
             ['code' => '1.101', 'description' => 'Compra para industrialização'],

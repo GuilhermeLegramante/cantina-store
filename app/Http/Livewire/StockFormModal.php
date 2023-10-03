@@ -9,6 +9,7 @@ use App\Http\Livewire\Traits\WithForm;
 use App\Http\Livewire\Traits\WithTabs;
 use App\Services\Mask;
 use App\Services\Nfe\Invoice;
+use App\Services\Nfe\ProductGateway;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Storage;
@@ -188,8 +189,11 @@ class StockFormModal extends Component
 
         Storage::delete($filePath);
 
-        dd($invoice);
+        $gateway = new ProductGateway($invoice);
 
+        $this->products = $gateway->getProducts();
+
+        $this->calcTotalItems();
     }
 
     public function render()

@@ -128,7 +128,17 @@ class CestncmRepository
             ->first();
     }
 
-    public function populate() {
+    public function findByCestAndNcm($cest, $ncm)
+    {
+        return $this->baseQuery
+            ->where($this->table . '.cest', $cest)
+            ->where($this->table . '.ncm', $ncm)
+            ->get()
+            ->first();
+    }
+
+    public function populate()
+    {
         DB::table($this->table)->insertOrIgnore([
             ['cest' => '0100100', 'ncm' => '38151210', 'description' => 'Catalisadores em colmeia cerâmica ou metálica para conversão catalítica de gases de escape de veículos e outros catalisadores'],
             ['cest' => '0100100', 'ncm' => '38151290', 'description' => 'Catalisadores em colmeia cerâmica ou metálica para conversão catalítica de gases de escape de veículos e outros catalisadores'],

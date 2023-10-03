@@ -91,8 +91,6 @@ class ProductFormModal extends Component
     {
         return [
             'description' => ['required'],
-            'manufacturerId' => ['required'],
-            'categoryId' => ['required'],
         ];
     }
 
